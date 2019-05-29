@@ -1,3 +1,11 @@
+---
+layout: post
+title:  spring45
+date:   2018-8-16 00:00:00 +0800
+categories: spring
+tag: 区别
+---
+
 随便记录一下spring新特性，以便日后学习
 
 Spring 4.x新特性
