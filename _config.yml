@@ -1,15 +1,15 @@
 # Site settings
 name: xqw的个人博客
-email: luoyan35714@126.com
+email: 773532049@qq.com
 author: xqw
 url: http://glowwormX.github.io
 resume_site: http://www.hifreud.com/Resume.io/
 github: https://github.com/glowwormX/
-baseurl: "/LessOrMore"
-description: Actually, less is more!
+baseurl: ""
+#description: Actually, less is more!
 meta_description: xqw的个人博客
-motto: It's our wits that make us men.
-banner: 学而不思则罔，思而不学则殆。
+#motto: It's our wits that make us men.
+#banner: 学而不思则罔，思而不学则殆。
 
 #permalink: /:categories/:year/:month/:day/:title/
 permalink: /:year/:month/:day/:title/
