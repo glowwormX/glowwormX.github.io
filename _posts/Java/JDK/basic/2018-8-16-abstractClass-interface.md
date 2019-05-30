@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  抽象类接口区别
-date:   2018-8-16 00:00:00 +0800
+date:   2018-8-16 08:00:00 +0800
 categories: java
 tag: 区别
 ---
