@@ -1,3 +1,14 @@
+---
+layout: post
+title:  resful_soap等概念
+date:   2018-05-16 08:00:00 +0800
+categories: 基础
+tag: 区别
+- oos
+---
+
+* content
+{:toc}
 
 ## soa、soap、WebService、WSDL、restful等一些概念   
 soa:面向服务架构，微服务：粒度更小    

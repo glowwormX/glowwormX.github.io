@@ -9,6 +9,11 @@ import java.io.UnsupportedEncodingException;
  */
 public class CodeTest {
     public static void main(String[] args) throws UnsupportedEncodingException {
+        System.out.println(Integer.toBinaryString(Float.floatToIntBits(-0.125F)));
+        System.out.println(Integer.toBinaryString(Float.floatToIntBits(-5F)));
+        System.out.println(Integer.toBinaryString(Float.floatToIntBits(5F)));
+        System.out.println(Integer.toBinaryString(Float.floatToIntBits(-3.125F)));
+
         char a = '好';
         String str = "g";
         byte[] bytes = str.getBytes();

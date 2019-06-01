@@ -1,3 +1,14 @@
+---
+layout: post
+title:  IntegerString
+date:   2019-05-20 08:00:00 +0800
+categories: java
+tag: java基础
+---
+
+* content
+{:toc}
+
 * Integer
 1、-128到128之间 Integer i = 10 这样的创建方式会被缓存，new则不会   
 2、Integer 与 int ==操作符时会将Integer自动拆箱
