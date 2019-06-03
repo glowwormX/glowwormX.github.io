@@ -1,12 +1,12 @@
-### Immutable ²»±äÄ£Ê½  
-final×Ö¶Î£¨java.lang.String Boolean£©  
-### Guarded Suspension  ÒªµÈÎÒ×¼±¸ºÃ  
-### Balking ²»ĞèÒªµÄ»°¾ÍËãÁË°É
-### Producer-Consumer Éú²úÕß-Ïû·ÑÕßÄ£Ê½  
-### Read¡ªWrite Lock ¿ÉÒÔËæ±ã¿´£¬¿´µÄÊ±ºò²»ÄÜĞ´£¬Ğ´Ê±Ëø¶¨
-### Thread¡ªPer¡ªMessage Õâ¸ö¹¤×÷¾Í½»¸øÄãÁË
-### Worker Thread µÈ¹¤×÷À´£¬À´ÁË¾Í¹¤×÷
-### Future  ÏÈ¸øÄãÕâÕÅÌá»õµ¥
-### Two-Phase Termination °ÑÍæ¾ßÊÕÊ°ºÃ£¬È¥Ë¯¾õ  
-ÀûÓÃinterrupt()¸Ä±äÏß³Ì×´Ì¬ÎªÖĞ¶Ï£¨²»ÓÃinterrupt²»ÄÜÂíÉÏÖĞ¶Ïsleep waitµÈ£©  
-Ïß³ÌÀïsleep wait join»á¼ì²âÏß³ÌÊÇ·ñÖĞ¶Ï£¬ÖĞ¶ÏÔòÅÜÅ×³öInterruptExceptionÒì³£,Ïß³ÌfinallyÀï×öÖÕÖ¹×îºóµÄ²Ù×÷  
+### Immutable ä¸å˜æ¨¡å¼  
+finalå­—æ®µï¼ˆjava.lang.String Booleanï¼‰  
+### Guarded Suspension  è¦ç­‰æˆ‘å‡†å¤‡å¥½  
+### Balking ä¸éœ€è¦çš„è¯å°±ç®—äº†å§
+### Producer-Consumer ç”Ÿäº§è€…-æ¶ˆè´¹è€…æ¨¡å¼  
+### Readâ€•Write Lock å¯ä»¥éšä¾¿çœ‹ï¼Œçœ‹çš„æ—¶å€™ä¸èƒ½å†™ï¼Œå†™æ—¶é”å®š
+### Threadâ€•Perâ€•Message è¿™ä¸ªå·¥ä½œå°±äº¤ç»™ä½ äº†
+### Worker Thread ç­‰å·¥ä½œæ¥ï¼Œæ¥äº†å°±å·¥ä½œ
+### Future  å…ˆç»™ä½ è¿™å¼ æè´§å•
+### Two-Phase Termination æŠŠç©å…·æ”¶æ‹¾å¥½ï¼Œå»ç¡è§‰  
+åˆ©ç”¨interrupt()æ”¹å˜çº¿ç¨‹çŠ¶æ€ä¸ºä¸­æ–­ï¼ˆä¸ç”¨interruptä¸èƒ½é©¬ä¸Šä¸­æ–­sleep waitç­‰ï¼‰  
+çº¿ç¨‹é‡Œsleep wait joinä¼šæ£€æµ‹çº¿ç¨‹æ˜¯å¦ä¸­æ–­ï¼Œä¸­æ–­åˆ™è·‘æŠ›å‡ºInterruptExceptionå¼‚å¸¸,çº¿ç¨‹finallyé‡Œåšç»ˆæ­¢æœ€åçš„æ“ä½œ  
