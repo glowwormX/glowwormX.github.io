@@ -1,9 +1,9 @@
-1. **Èë¿Ú**£ºXXXApplicationÀà Ê¹ÓÃ@SpringBootApplication×¢½â   
-* ¼ÓÔØapplication.yml»òÕßapplication.properties ÅäÖÃÎÄ¼ş   
-springboot»á×Ô¶¯¼ÓÔØspring.datasource.*Ïà¹ØÅäÖÃ£¬Êı¾İÔ´¾Í»á×Ô¶¯×¢Èëµ½sqlSessionFactoryÖĞ£¬   
-sqlSessionFactory»á×Ô¶¯×¢Èëµ½MapperÖĞ   
-ÔÚÆô¶¯ÀàÖĞÌí¼Ó¶Ômapper°üÉ¨Ãè@MapperScan    
-* ×Ô¶¯É¨ÃèXXXApplicationÍ¬¼¶Ä¿Â¼¼°×ÓÄ¿Â¼ËùÓĞ´ø×¢½âµÄÀà   
+1. **å…¥å£**ï¼šXXXApplicationç±» ä½¿ç”¨@SpringBootApplicationæ³¨è§£   
+* åŠ è½½application.ymlæˆ–è€…application.properties é…ç½®æ–‡ä»¶   
+springbootä¼šè‡ªåŠ¨åŠ è½½spring.datasource.*ç›¸å…³é…ç½®ï¼Œæ•°æ®æºå°±ä¼šè‡ªåŠ¨æ³¨å…¥åˆ°sqlSessionFactoryä¸­ï¼Œ   
+sqlSessionFactoryä¼šè‡ªåŠ¨æ³¨å…¥åˆ°Mapperä¸­   
+åœ¨å¯åŠ¨ç±»ä¸­æ·»åŠ å¯¹mapperåŒ…æ‰«æ@MapperScan    
+* è‡ªåŠ¨æ‰«æXXXApplicationåŒçº§ç›®å½•åŠå­ç›®å½•æ‰€æœ‰å¸¦æ³¨è§£çš„ç±»   
 com.self   
 ---XXXApplication   
 com.self.controller   

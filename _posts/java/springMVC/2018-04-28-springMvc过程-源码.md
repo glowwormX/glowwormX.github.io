@@ -1,14 +1,18 @@
-ydy 图  
-SpringMVC工作原理解读--DispatcherServlet类源码解读（初级）  
-http://www.cnblogs.com/duanxiaojun/p/6591448.html  
-http://blog.csdn.net/wangyang1354/article/details/51999414   
-springmvc源码分析   
-https://www.cnblogs.com/duanxiaojun/p/6595419.html   
-https://www.cnblogs.com/heavenyes/p/3905844.html
+---
+layout: post
+title:  springMvc过程-源码
+date:   2018-04-28 08:00:00 +0800
+categories: spring
+tag: springMvc
+---
 
-过程：   
+* content
+{:toc}
 
-![](https://raw.githubusercontent.com/glowwormX/note/master/imgs/springMVC.png)   
+
+## 过程：   
+
+![](/styles/images/java/springMVC.png)   
 
 第一步：发起请求到前端控制器(DispatcherServlet)         
 
@@ -42,7 +46,7 @@ https://www.cnblogs.com/heavenyes/p/3905844.html
 
 
 
-组件：   
+## 组件：   
 
 1、前端控制器DispatcherServlet（不需要程序员开发）   
 
@@ -76,4 +80,11 @@ https://www.cnblogs.com/heavenyes/p/3905844.html
 6、视图View(需要程序员开发jsp)   
 
 View是一个接口，实现类支持不同的View类型（jsp、freemarker、pdf...）   
-   
+
+## 推荐
+[springmvc源码分析系列-请求处理流程](http://www.cnblogs.com/duanxiaojun/p/6591448.html)  
+[SpringMVC工作原理解读--DispatcherServlet类源码解读（初级）](http://blog.csdn.net/wangyang1354/article/details/51999414)   
+ 
+ 
+[springmvc源码分析----入门看springmvc的加载过程](https://www.cnblogs.com/duanxiaojun/p/6595419.html)   
+[springmvc工作原理以及源码分析(基于spring3.1.0)](https://www.cnblogs.com/heavenyes/p/3905844.html)

@@ -1,17 +1,29 @@
-Eureka：服务治理：注册和发现，Eureka客户端向Eureka服务端注册、发现微服务  
-Ribbon：负载均衡（微服务对内调用），通过Eureka Server获取服务列表、再通过负载均衡算法调用微服务  
-Hystrix：实现断路器、线程隔离、信号隔离等容错功能  
-Zuul：网关（对外调用），路由转发，如以"user/"开头都到user微服务去  
-Config：配置文件管理  
-Bus：微服务之间消息队列，松耦合  
+---
+layout: post
+title:  springCloud
+date:   2018-08-08 08:00:00 +0800
+categories: spring
+tag: springCloud
+---
 
-springcloud如何实现服务的注册和发现
+* content
+{:toc}
+
+## 组件
++ Eureka/nacos/consul：服务治理：注册和发现，Eureka客户端向Eureka服务端注册、发现微服务  
++ Ribbon/Fegin：负载均衡（微服务对内调用），通过Eureka Server获取服务列表、再通过负载均衡算法调用微服务  
++ Hystrix：实现断路器、线程隔离、信号隔离等容错功能  
++ Zuul/GateWay：网关（对外调用），路由转发，如以"user/"开头都到user微服务去  
++ Config：配置文件管理  
++ Bus：微服务之间消息队列，松耦合  
+
+## springcloud如何实现服务的注册和发现
 
     服务在发布时 指定对应的服务名（服务名包括了IP地址和端口） 将服务注册到注册中心（eureka或者zookeeper）
     这一过程是springcloud自动实现 只需要在main方法添加@EnableDisscoveryClient  同一个服务修改端口就可以启动多个实例
     调用方法：传递服务名称通过注册中心获取所有的可用实例 通过负载均衡策略调用（ribbon和feign）对应的服务
 
-Ribbon和Feign的区别：
+## Ribbon和Feign的区别：
 
     Ribbon添加maven依赖 spring-starter-ribbon 使用@RibbonClient(value="服务名称") 使用RestTemplate调用远程服务对应的方法
     feign添加maven依赖 spring-starter-feign 服务提供方提供对外接口 调用方使用 在接口上使用@FeignClient("指定服务名")
@@ -41,7 +53,7 @@ Ribbon和Feign的区别：
     Request交给Client去处理，其中Client可以是HttpUrlConnection、HttpClient也可以是Okhttp
     最后Client被封装到LoadBalanceClient类，这个类结合类Ribbon做到了负载均衡。
 
-springCloud断路器的作用
+## springCloud断路器的作用
 
     当一个服务调用另一个服务由于网络原因或者自身原因出现问题时 调用者就会等待被调用者的响应 当更多的服务请求到这些资源时
     导致更多的请求等待 这样就会发生连锁效应（雪崩效应） 断路器就是解决这一问题
@@ -52,7 +64,7 @@ springCloud断路器的作用
     关闭：
             当服务一直处于正常状态 能正常调用 断路器关闭
 
-Zuul
+## Zuul
 
     zuul作为微服务网关，具有动态路由和过滤器链功能，基于zuul可以实现：
     认证&鉴权
@@ -75,9 +87,9 @@ Zuul
     zuul.routes.express.stripPrefix=false 
     请求的不同path会路由到不同的服务，应用中我们使用zuul做了统一的api鉴权，参数处理，服务路由等功能。
 
-demo：
-https://github.com/glowwormX/note/tree/master/Java/springCloud/spring-cloud-parent
-``` lua
+## demo：
+[demo](https://github.com/glowwormX/note/tree/master/Java/springCloud/spring-cloud-parent)
+```
 spring-cloud-parent   
 ├── spring-cloud-eureka -- 8761 高可用注册中心，相互注册    
 ├── spring-cloud-eureka1 -- 8762 高可用注册中心，相互注册     
@@ -98,6 +110,7 @@ consumer调用provider1
 consumer1调用provider1
 ```
 
+## 
 rabbitMQ安装   
 https://www.jianshu.com/p/2d4b81c8b403   
 http://blog.topspeedsnail.com/archives/4750   
