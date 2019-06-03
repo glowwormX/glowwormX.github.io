@@ -11,7 +11,17 @@ tag:
 {:toc}
 
 过程：
-[](/styles/images/java/classLoad.jpg)
+![](/styles/images/java/classLoad1.jpg)
+
+## 加载
+
+**加载**是**类加载（Class Loading）**过程的一个阶段，两者不要混淆。虚拟机规范规定了在在加载阶段，jvm需要完成以下三件事情：
++ 通过一个类的全限定名来获取定义此类的**二进制字节流**。
++ 将这个字节流所代表的静态存储结构转化为**方法区的运行时存储结构**。
++ 在内存中生成一个代表这个类的`java.lang.Class`对象，作为方法区这个类的各种**数据的访问入口**。
+
+**类加载器**
+![](/styles/images/java/classLoad2.jpg)
 
 # 初始化
 虚拟机规范有且只有5中情况进行初始化

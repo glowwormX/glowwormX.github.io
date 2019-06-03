@@ -9,7 +9,7 @@ baseurl: ""
 #description: Actually, less is more!
 meta_description: xqw的个人博客
 #motto: It's our wits that make us men.
-#banner: 学而不思则罔，思而不学则殆。
+banner: 不积跬步，无以至千里。
 
 #permalink: /:categories/:year/:month/:day/:title/
 permalink: /:year/:month/:day/:title/
