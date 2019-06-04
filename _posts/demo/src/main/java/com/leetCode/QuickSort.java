@@ -1,13 +1,13 @@
-package com.example.io;
+package com.leetCode;
 
 import java.io.UnsupportedEncodingException;
 
 /**
  * @author 徐其伟
- * @Description:
+ * @Description: 快排
  * @date 2019/5/30 21:48
  */
-public class CodeTest {
+public class QuickSort {
     public static void main(String[] args) throws UnsupportedEncodingException {
 //        System.out.println(Integer.toBinaryString(Float.floatToIntBits(-0.125F)));
 //        System.out.println(Integer.toBinaryString(Float.floatToIntBits(-5F)));
@@ -31,22 +31,27 @@ public class CodeTest {
 
     private static void quickSort(int[] arr, int left, int right) {
         if (left > right) return;
-        int temp = arr[left];
+        int temp = arr[left]; //取第一个为基数，拿来对比，并缓存在temp里
         int i = left, j = right;
         while (i < j) {
+            //找出右边比基数小的，返回的j为下标
             while (i < j && temp < arr[j]) {
                 j--;
             }
+            //先赋值再i++，将小的数给i下表的
             if (i < j) {
                 arr[i++] = arr[j];
             }
+            //找出左边边比基数大的，返回的i为下标
             while (i < j && temp > arr[i]) {
                 i++;
             }
+            //将大的数给j下表的
             if (i < j) {
                 arr[j--] = arr[i];
             }
         }
+        //把基数给最后中间的位置
         arr[i] = temp;
         quickSort(arr, left, i - 1);
         quickSort(arr, i + 1, right);
