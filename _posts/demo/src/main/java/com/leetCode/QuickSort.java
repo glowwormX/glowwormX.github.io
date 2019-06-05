@@ -9,19 +9,12 @@ import java.io.UnsupportedEncodingException;
  */
 public class QuickSort {
     public static void main(String[] args) throws UnsupportedEncodingException {
-//        System.out.println(Integer.toBinaryString(Float.floatToIntBits(-0.125F)));
-//        System.out.println(Integer.toBinaryString(Float.floatToIntBits(-5F)));
-//        System.out.println(Integer.toBinaryString(Float.floatToIntBits(5F)));
-//        System.out.println(Integer.toBinaryString(Float.floatToIntBits(-3.125F)));
-//
-//        char a = '好';
-//        String str = "g";
-//        byte[] bytes = str.getBytes();
-//        int byte_len = bytes.length;
-//        System.out.println(bytes + "字节长度：" + byte_len);
 
         int[] arr = {4,6,2,77,23,9,3,7,31,15,13,17};
-        quickSort(arr, 0, arr.length - 1);
+//        quickSort(arr, 0, arr.length - 1);
+//        arr = new int[]{3,2,1,5,6,4};
+        int i = KMax(arr, 0, arr.length - 1, 2);
+        System.out.println(i);
 
     }
 
@@ -57,9 +50,38 @@ public class QuickSort {
         quickSort(arr, i + 1, right);
     }
 
-    private static void swap(int[] arr, int i, int j) {
-        int x = arr[i];
-        arr[i] = arr[j];
-        arr[j] = x;
+
+    /** 快排变种
+     * @param nums
+     * @param l
+     * @param r
+     * @param k
+     * @return
+     */
+    public static int KMax(int[] nums, int l, int r, int k) {
+        int i = l, j = r;
+        int temp = nums[i];
+        while (i < j) {
+            while (i < j && temp > nums[j]) {
+                j--;
+            }
+            if (i < j) {
+                nums[i++] = nums[j];
+            }
+            while (i < j && temp < nums[i]) {
+                i++;
+            }
+            if (i < j) {
+                nums[j--] = nums[i];
+            }
+        }
+        nums[i] = temp;
+        if (k == i + 1) {
+            return nums[i];
+        } else if (k < i + 1) {
+            return KMax(nums, 0, i - 1, k);
+        } else {
+            return KMax(nums, i + 1, r, k);
+        }
     }
 }
