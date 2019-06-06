@@ -2,12 +2,12 @@ package com.leetCode;
 
 /**
  * @author 徐其伟
- * @Description:
+ * @Description: 最大回文路径
  * @date 19-6-5 下午7:22
  */
-public class Longest {
+public class LongestPalindrome {
     public static void main(String[] args) {
-        String babad = new Longest().longestPalindrome1("babad");
+        String babad = new LongestPalindrome().longestPalindrome1("babad");
         System.out.println(babad);
     }
 
