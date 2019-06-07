@@ -49,4 +49,8 @@ a==c //true
 
         System.out.println(hello == "hel" + "lo");//true 编译时直接将两个相加，放到常量池
         System.out.println(hello == "hel" + lo);//false 运行时才相加，放到堆中
+        
+        String str1 = new StringBuilder("aaaa").append("bbbb").toString();
+        System.out.println(str1.intern() == str1));//jdk1.6及以前 false 1.7后true，没出现的不会再复制实例，在常量池记录对象的引用
+
 ```
