@@ -6,7 +6,8 @@ package com.leetCode.binarySearch;
  * order：4
  * @date 2019/6/7 14:45
  */
-public class findMedianSortedArrays {
+public class
+findMedianSortedArrays {
     public static void main(String[] args) {
         int[] A = new int[]{-1,7,9,20,21};
         int[] B = new int[]{-6,-4,-2,11,16};
