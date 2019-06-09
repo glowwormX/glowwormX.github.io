@@ -13,7 +13,7 @@ import java.util.Set;
  */
 public class LengthOfLongestSubstring {
     public static void main(String[] args) {
-        int res = lengthOfLongestSubstring2("abcabcbb");
+        int res = lengthOfLongestSubstring1("abcabcbb");
         System.out.println(res);
     }
 
@@ -49,7 +49,7 @@ public class LengthOfLongestSubstring {
      * @param s
      * @return
      */
-    public int lengthOfLongestSubstring1(String s) {
+    public static int lengthOfLongestSubstring1(String s) {
         int n = s.length();
         Set<Character> set = new HashSet<Character>();
         int ans = 0, i = 0, j = 0;
