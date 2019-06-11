@@ -1,4 +1,4 @@
-package com.leetCode;
+package com.leetCode.numCal;
 
 /**
  * @author 徐其伟

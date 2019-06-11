@@ -11,6 +11,7 @@ import java.util.Arrays;
 public class ThreeSumClosest {
     public int threeSumClosest(int[] nums, int target) {
         int result = 0, abs = Integer.MAX_VALUE;
+        //先排序
         Arrays.sort(nums);
         int len = nums.length;
         for (int i = 0; i < len - 2; i++) {

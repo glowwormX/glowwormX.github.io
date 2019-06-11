@@ -1,4 +1,4 @@
-package com.leetCode;
+package com.leetCode.dynamicPlan;
 
 import java.util.ArrayList;
 import java.util.HashSet;

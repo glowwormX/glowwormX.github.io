@@ -63,13 +63,13 @@ public class QuickSort {
         int i = l, j = r;
         int temp = nums[i];
         while (i < j) {
-            while (i < j && temp > nums[j]) {
+            while (i < j && temp < nums[j]) {
                 j--;
             }
             if (i < j) {
                 nums[i++] = nums[j];
             }
-            while (i < j && temp < nums[i]) {
+            while (i < j && temp > nums[i]) {
                 i++;
             }
             if (i < j) {
@@ -77,12 +77,12 @@ public class QuickSort {
             }
         }
         nums[i] = temp;
-        if (k == i + 1) {
+        if (k == nums.length - i) { //从小到大排，第i个为 nums.length - i大
             return nums[i];
-        } else if (k < i + 1) {
-            return KMax(nums, 0, i - 1, k);
-        } else {
+        } else if (k < nums.length - i) {
             return KMax(nums, i + 1, r, k);
+        } else {
+            return KMax(nums, 0, i - 1, k);
         }
     }
 }

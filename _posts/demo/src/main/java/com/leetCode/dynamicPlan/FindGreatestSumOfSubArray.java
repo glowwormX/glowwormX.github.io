@@ -1,4 +1,4 @@
-package com.leetCode;
+package com.leetCode.dynamicPlan;
 
 /**
  * @author 徐其伟
@@ -16,8 +16,8 @@ public class FindGreatestSumOfSubArray {
 //    res=max(res，F(i))
     
     public static int findGreatestSumOfSubArray(int[] array) {
-        int res = array[0]; //记录当前所有子数组的和的最大值
-        int max=array[0];   //包含array[i]的连续数组最大值
+        int res = array[0]; //记录当前所有子数组的和的最大值 全局最优
+        int max=array[0];   //包含array[i]的连续数组最大值 局部最优
         for (int i = 1; i < array.length; i++) {
             max=Math.max(max+array[i], array[i]);
             res=Math.max(max, res);
