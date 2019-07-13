@@ -9,8 +9,33 @@ tag: springMvc
 * content
 {:toc}
 
+## 组件
+
+```java
+protected void initStrategies(ApplicationContext context) {
+	// 文件上传解析器
+	initMultipartResolver(context);
+	// 本地化解析器
+	initLocaleResolver(context);
+	// 主题解析器
+	initThemeResolver(context);
+	// 处理器映射器(url和Controller方法的映射)
+	initHandlerMappings(context);
+	// 处理器适配器(实际执行Controller方法)
+	initHandlerAdapters(context);
+	// 处理器异常解析器
+	initHandlerExceptionResolvers(context);
+	// RequestToViewName解析器
+	initRequestToViewNameTranslator(context);
+	// 视图解析器(视图的匹配和渲染)
+	initViewResolvers(context);
+	// FlashMap管理者
+	initFlashMapManager(context);
+}
+```
 
 ## 过程：   
+
 
 ![](/styles/images/java/springMVC.png)   
 
