@@ -9,30 +9,6 @@ tag: springMvc
 * content
 {:toc}
 
-## 组件
-
-```java
-protected void initStrategies(ApplicationContext context) {
-	// 文件上传解析器
-	initMultipartResolver(context);
-	// 本地化解析器
-	initLocaleResolver(context);
-	// 主题解析器
-	initThemeResolver(context);
-	// 处理器映射器(url和Controller方法的映射)
-	initHandlerMappings(context);
-	// 处理器适配器(实际执行Controller方法)
-	initHandlerAdapters(context);
-	// 处理器异常解析器
-	initHandlerExceptionResolvers(context);
-	// RequestToViewName解析器
-	initRequestToViewNameTranslator(context);
-	// 视图解析器(视图的匹配和渲染)
-	initViewResolvers(context);
-	// FlashMap管理者
-	initFlashMapManager(context);
-}
-```
 
 ## 过程：   
 
@@ -71,7 +47,32 @@ protected void initStrategies(ApplicationContext context) {
 
 
 
-## 组件：   
+## 组件：
+   
+初始化：
+```java
+protected void initStrategies(ApplicationContext context) {
+	// 文件上传解析器
+	initMultipartResolver(context);
+	// 本地化解析器
+	initLocaleResolver(context);
+	// 主题解析器
+	initThemeResolver(context);
+	// 处理器映射器(url和Controller方法的映射)
+	initHandlerMappings(context);
+	// 处理器适配器(实际执行Controller方法)
+	initHandlerAdapters(context);
+	// 处理器异常解析器
+	initHandlerExceptionResolvers(context);
+	// RequestToViewName解析器
+	initRequestToViewNameTranslator(context);
+	// 视图解析器(视图的匹配和渲染)
+	initViewResolvers(context);
+	// FlashMap管理者
+	initFlashMapManager(context);
+}
+```
+
 
 1、前端控制器DispatcherServlet（不需要程序员开发）   
 
@@ -104,10 +105,4 @@ protected void initStrategies(ApplicationContext context) {
 
 6、视图View(需要程序员开发jsp)   
 
-View是一个接口，实现类支持不同的View类型（jsp、freemarker、pdf...）   
-
-## 源码
-[源码分析7篇文章](https://my.oschina.net/u/2377110?tab=newest&catalogId=5710349)   
-[springmvc源码分析系列-请求处理流程](http://www.cnblogs.com/duanxiaojun/p/6591448.html)  
-[SpringMVC工作原理解读--DispatcherServlet类源码解读（初级）](http://blog.csdn.net/wangyang1354/article/details/51999414)   
- 
+View是一个接
