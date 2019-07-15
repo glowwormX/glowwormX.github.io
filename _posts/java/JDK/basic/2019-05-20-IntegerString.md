@@ -12,6 +12,7 @@ tag: java基础
 * Integer
 1、-128到128之间 Integer i = 10 这样的创建方式会被缓存，new则不会   
 2、Integer 与 int ==操作符时会将Integer自动拆箱
+
 ```Java
 Integer a = 10;
 Integer b = 10;
