@@ -3,3 +3,5 @@
 　　如调用方一直访问是否已完成就是同步，被调用方完成的时候通知给调用方为异步   
 **阻塞/非阻塞**   
 　　说的是调用方，调用方能做其他事情就是非阻塞，
+
+[关于同步，异步，阻塞，非阻塞，IOCP/epoll,select/poll,AIO ,NIO ,BIO的总结](https://blog.csdn.net/chen8238065/article/details/48315085)
