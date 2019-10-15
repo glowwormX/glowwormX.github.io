@@ -35,13 +35,14 @@ public class LongestPalindrome {
         while (i < s.length()) {
             int length = 1;
             int l = i, r = i;
-            while (r + 1 < s.length() && s.charAt(i) == s.charAt(r + 1)) {
-                r++;
-            }
+            //找重复字串
             while (l - 1 > 0 && s.charAt(i) == s.charAt(l - 1)) {
                 l--;
             }
-
+            while (r + 1 < s.length() && s.charAt(i) == s.charAt(r + 1)) {
+                r++;
+            }
+            //两边相等长度加1
             while (r + length <= (s.length() - 1) && l - length >= 0 && s.charAt(r + length) == s.charAt(l - length)) {
                 length++;
             }

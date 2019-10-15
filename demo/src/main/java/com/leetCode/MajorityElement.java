@@ -1,7 +1,5 @@
 package com.leetCode;
 
-import org.omg.CORBA.INTERNAL;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +11,7 @@ import java.util.List;
  */
 public class MajorityElement {
     public static void main(String[] args) {
+        System.out.println(new MajorityElement().majorityElement2n(new int[]{2, 2, 3, 1}));
         System.out.println(new MajorityElement().majorityElement3n(new int[]{3, 1, 1, 3, 2}));
     }
 

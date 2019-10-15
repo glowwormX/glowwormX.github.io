@@ -12,7 +12,15 @@ public class QuickSort {
     public static void main(String[] args) throws UnsupportedEncodingException {
 
         int[] arr = {4,6,2,77,23,9,3,7,31,15,13,17};
-//        quickSort(arr, 0, arr.length - 1);
+//               i             j                     4
+//        arr = {3,6,2,77,23,9,3,7,31,15,13,17};
+//                 i           j                     4
+//        arr = {3,6,2,77,23,9,6,7,31,15,13,17};
+//                   jj                               4
+//        arr = {3,2,2,77,23,9,6,7,31,15,13,17};
+//                 i j                               4
+//        arr = {3,2,4,77,23,9,6,7,31,15,13,17};
+        quickSort(arr, 0, arr.length - 1);
 //        arr = new int[]{3,2,1,5,6,4};
         int i = KMax(arr, 0, arr.length - 1, 2);
         System.out.println(i);
