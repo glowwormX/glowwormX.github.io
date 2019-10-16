@@ -1,9 +1,10 @@
-package com.leetCode;
+package com.leetCode.array;
 
 /**
  * @author 徐其伟
  * @Description:
  * 330 Patching Array
+ *
  * @date 2019/6/8 20:12
  */
 public class PatchingArray {
@@ -12,6 +13,10 @@ public class PatchingArray {
         System.out.println(new PatchingArray().minPatches(new int[]{1, 10, 5}, 20));
     }
 
+
+    /**
+     * 往nums添加元素，使得nums取任意元素能
+     */
     public int minPatches(int[] nums, int n) {
         long cur_max = nums.length == 0 || nums[0] > 1 ? 0 : 1;
 

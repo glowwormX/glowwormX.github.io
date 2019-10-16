@@ -1,4 +1,4 @@
-package com.leetCode;
+package com.leetCode.array;
 
 /**
  * @author 徐其伟
