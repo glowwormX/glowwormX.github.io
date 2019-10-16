@@ -9,8 +9,8 @@ package com.leetCode.binarySearch;
 public class
 findMedianSortedArrays {
     public static void main(String[] args) {
-        int[] A = new int[]{-1,7,9,20,21};
-        int[] B = new int[]{-6,-4,-2,11,16};
+        int[] A = new int[]{-1,9,20,21};
+        int[] B = new int[]{-6,-4,-2,7,8,11};
         new findMedianSortedArrays().findMedianSortedArrays(A, B);
     }
 
@@ -23,6 +23,7 @@ findMedianSortedArrays {
         }
         int iMin = 0, iMax = m, halfLen = (m + n + 1) / 2;
         while (iMin <= iMax) {
+            //i:小数组中间值  保证i+j中位数长度
             int i = (iMin + iMax) / 2;
             int j = halfLen - i;
             if (i < iMax && B[j-1] > A[i]){
