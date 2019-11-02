@@ -3,6 +3,7 @@ package com.leetCode.numCal;
 /**
  * @author 徐其伟
  * @Description:
+ * 50  Pow(x, n)
  * @date 2019/6/9 19:48
  */
 public class PowXN {

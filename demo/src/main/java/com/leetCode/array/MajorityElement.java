@@ -1,4 +1,4 @@
-package com.leetCode;
+package com.leetCode.array;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import java.util.List;
  * @author 徐其伟
  * @Description:
  * order 69
+ * 查找主要元素，超过n/2或3/2的
  * @date 2019/6/7 17:40
  */
 public class MajorityElement {

@@ -1,4 +1,4 @@
-package com.leetCode;
+package com.leetCode.array;
 
 import java.util.Arrays;
 
@@ -6,6 +6,7 @@ import java.util.Arrays;
  * @author 徐其伟
  * @Description: 求数组中三个值的和最接近目标值的值
  * 16. 3Sum Closest
+ * 类似问题 2sum 3sum
  * @date 19-2-27 下午2:44
  */
 public class ThreeSumClosest {

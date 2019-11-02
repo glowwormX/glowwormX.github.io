@@ -2,7 +2,7 @@ package com.leetCode;
 
 /**
  * @author 徐其伟
- * @Description:
+ * @Description: 8皇后
  * @date 2019/6/8 23:57
  */
 public class Queen8 {

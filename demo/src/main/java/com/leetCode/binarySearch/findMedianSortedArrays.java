@@ -34,15 +34,25 @@ findMedianSortedArrays {
             }
             else { // i is perfect
                 int maxLeft = 0;
-                if (i == 0) { maxLeft = B[j-1]; }
-                else if (j == 0) { maxLeft = A[i-1]; }
-                else { maxLeft = Math.max(A[i-1], B[j-1]); }
-                if ( (m + n) % 2 == 1 ) { return maxLeft; }
+                if (i == 0) {
+                    maxLeft = B[j - 1];
+                } else if (j == 0) {
+                    maxLeft = A[i - 1];
+                } else {
+                    maxLeft = Math.max(A[i - 1], B[j - 1]);
+                }
+                if ((m + n) % 2 == 1) {
+                    return maxLeft;
+                }
 
                 int minRight = 0;
-                if (i == m) { minRight = B[j]; }
-                else if (j == n) { minRight = A[i]; }
-                else { minRight = Math.min(B[j], A[i]); }
+                if (i == m) {
+                    minRight = B[j];
+                } else if (j == n) {
+                    minRight = A[i];
+                } else {
+                    minRight = Math.min(B[j], A[i]);
+                }
 
                 return (maxLeft + minRight) / 2.0;
             }
