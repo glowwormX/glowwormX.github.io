@@ -14,13 +14,13 @@ public class FindGreatestSumOfSubArray {
 //    res：所有子数组的和的最大值
 //
 //    res=max(res，F(i))
-    
+
     public static int findGreatestSumOfSubArray(int[] array) {
         int res = array[0]; //记录当前所有子数组的和的最大值 全局最优
-        int max=array[0];   //包含array[i]的连续数组最大值 局部最优
+        int max = array[0];   //包含array[i]的连续数组最大值 局部最优
         for (int i = 1; i < array.length; i++) {
-            max=Math.max(max+array[i], array[i]);
-            res=Math.max(max, res);
+            max = Math.max(max + array[i], array[i]);
+            res = Math.max(max, res);
         }
         return res;
     }
