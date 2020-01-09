@@ -117,3 +117,10 @@ http://blog.topspeedsnail.com/archives/4750
 
 实践   
 http://tech.dianwoda.com/2017/09/04/spring-cloudxiang-guan-zu-jian-shi-jian/
+
+## 分布式日志采集
+[elk采集1](https://blog.csdn.net/guduyishuai/article/details/79228306)
+[elk采集2](https://blog.csdn.net/lixiang987654321/article/details/88134072)
+
+[轻量级实现-扩展logback](https://blog.csdn.net/guduyishuai/article/details/81356000)
+
