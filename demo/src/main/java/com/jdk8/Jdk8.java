@@ -4,6 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -15,7 +16,6 @@ import java.util.stream.Collectors;
 public class Jdk8 {
     public static void main(String[] args) {
 //        test1();
-
         new C().hello();
     }
 

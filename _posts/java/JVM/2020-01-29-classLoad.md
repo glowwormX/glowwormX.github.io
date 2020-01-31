@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  类加载机制
-date:   2018-06-24 08:00:00 +0800
+date:   2020-01-29 08:00:00 +0800
 categories: jvm
 tag:
 - JVM
