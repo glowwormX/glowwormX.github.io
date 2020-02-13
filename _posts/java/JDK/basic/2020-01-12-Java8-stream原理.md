@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Java8-stream原理
+title:  Java8-Lambda/Stream原理
 date:   2020-01-12 08:00:00 +0800
 categories: java
 tag: java基础
