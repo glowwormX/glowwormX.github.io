@@ -3,6 +3,10 @@ package com.leetCode.backtrack;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 求所有子集，给定数组无重复数据
+ * 78. Subsets
+ */
 public class SubSet {
     public static void main(String[] args) {
         List<List<Integer>> res = new SubSet().subsets(new int[]{2,4,3,1});
@@ -23,7 +27,7 @@ public class SubSet {
      */
     private void backtrack(List<List<Integer>> list , List<Integer> tempList, int [] nums, int start){
         list.add(new ArrayList<>(tempList));
-        for(int i = start; i < nums.length; i++){
+        for(int i = start; i < nums.length; i++) {
             tempList.add(nums[i]);
             backtrack(list, tempList, nums, i + 1);
             tempList.remove(tempList.size() - 1);

@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * 求所有子集
- * 90. Subsets 有重复数据
+ * 求所有子集，给定数组有重复数据
+ * 90. Subsets
  */
 public class SubSetII {
     public static void main(String[] args) {

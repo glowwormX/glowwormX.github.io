@@ -3,9 +3,7 @@ package com.jdk8;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -15,7 +13,9 @@ import java.util.stream.Collectors;
  */
 public class Jdk8 {
     public static void main(String[] args) {
-//        test1();
+        test1();
+        List<Integer> list = new ArrayList<>(Arrays.asList(1,2,3,4));
+        List<Integer> res = list.stream().filter(x -> x % 2 == 0).collect(Collectors.toList());
         new C().hello();
     }
 
@@ -26,7 +26,7 @@ public class Jdk8 {
                 .flatMap(x1 -> Arrays.stream(x1).flatMap(x2 -> Arrays.stream(x2)))
                 .filter(x -> x % 2 == 0)
                 .collect(Collectors.groupingBy(Integer::intValue, Collectors.counting()));
-
+        System.out.println(collect);
         LocalDate date1 = LocalDate.of(2014, 3, 18);
         LocalDate date2 = date1.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
     }

@@ -6,6 +6,17 @@ import java.util.List;
 public class Combination {
     public static void main(String[] args) {
         System.out.println(new Combination().combine(4, 2));
+        /*
+        输出
+        [
+          [2,4]，
+          [3,4]，
+          [2,3]，
+          [1,2]，
+          [1,3]，
+          [1,4]，
+        ]
+        */
     }
 
     public List<List<Integer>> combine(int n, int k) {
