@@ -59,3 +59,28 @@ https://blog.csdn.net/lxiang222/article/details/70340084
 $(function(){...})加载完成后   
 js先对var变量和function进行预编译，var变量均为undefined   
 document.write()比较复杂，延迟加载，不会立即入栈，先载完本页面再入栈   
+
+#string、FormData、obj、jsonString、URLSearchParams相互转换
+
+```
+    let obj = {a:1,b:"22"};
+
+    let obj2form = new FormData();
+    Object.keys(obj).forEach((key) => {
+        obj2form.append(key, obj[key]);
+    });
+    console.log("obj2form:", obj2form);
+
+    let urlSearchParams = new URLSearchParams(obj2form);
+    console.log("form2string", urlSearchParams.toString());
+
+    let paramsStr2URLSearchParams = new URLSearchParams(urlSearchParams.toString()
+    console.log("paramsStr2URLSearchParams", paramsStr2URLSearchParams);
+
+    let form2Obj = {};
+    obj2form.forEach((value, key) => form2Obj[key] = value);
+    console.log("form2Obj:", form2Obj);
+
+    console.log("obj2jsonStr", JSON.stringify(obj));
+    console.log("jsonStr2obj", JSON.parse(JSON.stringify(obj)));
+```
