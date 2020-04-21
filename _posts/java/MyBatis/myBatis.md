@@ -1,26 +1,26 @@
-### Ó³ÉäÆ÷  
-Mybatis´«¶à¸ö²ÎÊı£¨ÈıÖÖ½â¾ö·½°¸£©   
+### æ˜ å°„å™¨  
+Mybatisä¼ å¤šä¸ªå‚æ•°ï¼ˆä¸‰ç§è§£å†³æ–¹æ¡ˆï¼‰   
 https://www.2cto.com/database/201409/338155.html   
-1¡¢sql±êÇ©£¬ÒıÓÃÆäËûid±êÇ©µÄsqlÓï¾ä£¨È¥ÖØ¸´£¬laravelÄ£°åÒıÇæ£©  
-2¡¢¼¶Áª²Ù×÷  
-assiciation Ò»¶ÔÒ»  
-collection Ò»¶Ô¶à  
-discrimination ¼ø±ğ¼¶Áª£¨ÄĞÅ®Ìå¼ìÏîÄ¿ÊµÌåÀà²»Í¬£©  
-3¡¢¶¯Ì¬´úÀí·½Ê½  
-JDK¶¯Ì¬´úÀí  
+1ã€sqlæ ‡ç­¾ï¼Œå¼•ç”¨å…¶ä»–idæ ‡ç­¾çš„sqlè¯­å¥ï¼ˆå»é‡å¤ï¼Œlaravelæ¨¡æ¿å¼•æ“ï¼‰  
+2ã€çº§è”æ“ä½œ  
+assiciation ä¸€å¯¹ä¸€  
+collection ä¸€å¯¹å¤š  
+discrimination é‰´åˆ«çº§è”ï¼ˆç”·å¥³ä½“æ£€é¡¹ç›®å®ä½“ç±»ä¸åŒï¼‰  
+3ã€åŠ¨æ€ä»£ç†æ–¹å¼  
+JDKåŠ¨æ€ä»£ç†  
 ```java
-// ½Ó¿Ú  
+// æ¥å£  
 public interface HelloService{  
     void sayHello(String name);  
 }  
-// ÊµÏÖÀà  
+// å®ç°ç±»  
 public class HelloServiceImpl implements HelloService {  
     @Override  
     public void sayHello(String name) {
         System.out.println("hello"+name);
     }
 }
-// ´úÀíÀà£¨bind°ó¶¨·½·¨£¬invoke´úÀí·½·¨£¬Í¨¹ı´úÀí¶ÔÏóÊ×ÏÈ½øÈëÕâ¸ö·½·¨£©
+// ä»£ç†ç±»ï¼ˆbindç»‘å®šæ–¹æ³•ï¼Œinvokeä»£ç†æ–¹æ³•ï¼Œé€šè¿‡ä»£ç†å¯¹è±¡é¦–å…ˆè¿›å…¥è¿™ä¸ªæ–¹æ³•ï¼‰
 public class HelloServiceProxy implements InvocationHandler {
     private Object target;
     public Object bind(Object target) {
@@ -32,23 +32,23 @@ public class HelloServiceProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         // TODO Auto-generated method stub
-        System.out.println("½øÈë¶¯Ì¬´úÀí");
+        System.out.println("è¿›å…¥åŠ¨æ€ä»£ç†");
         Object result = null;
-        System.out.println("¶¯Ì¬´úÀíÇ°");
+        System.out.println("åŠ¨æ€ä»£ç†å‰");
         method.invoke(target, args);
-        System.out.println("¶¯Ì¬´úÀíºó");
+        System.out.println("åŠ¨æ€ä»£ç†å");
         return result;
     }
 }
-// µ÷ÓÃ£¨´´½¨´úÀíÀà£¬bind°ó¶¨½Ó¿Ú²¢·µ»ØÊµÏÖÀà£¬µ÷ÓÃ·½·¨£©
+// è°ƒç”¨ï¼ˆåˆ›å»ºä»£ç†ç±»ï¼Œbindç»‘å®šæ¥å£å¹¶è¿”å›å®ç°ç±»ï¼Œè°ƒç”¨æ–¹æ³•ï¼‰
     public static void main(String[] args) {
         HelloServiceProxy helloHandler = new HelloServiceProxy();
         HelloService proxy = (HelloService)helloHandler.bind(new HelloServiceImpl());
-        //Í¨¹ı´úÀí¶ÔÏóµ÷ÓÃ
+        //é€šè¿‡ä»£ç†å¯¹è±¡è°ƒç”¨
         proxy.sayHello("xxx");
     }
 ```
-CGLIB¶¯Ì¬´úÀí  
-ÎŞĞè½Ó¿Ú  
-4¡¢µ÷ÓÃ´æ´¢¹ı³Ì¡¢ÓÎ±ê¡¢·Ö±í¡¢·ÖÒ³  
-ÅäÖÃ²ÎÊı mode = OUT/IN   
+CGLIBåŠ¨æ€ä»£ç†  
+æ— éœ€æ¥å£  
+4ã€è°ƒç”¨å­˜å‚¨è¿‡ç¨‹ã€æ¸¸æ ‡ã€åˆ†è¡¨ã€åˆ†é¡µ  
+é…ç½®å‚æ•° mode = OUT/IN   
