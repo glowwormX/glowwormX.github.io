@@ -43,8 +43,8 @@ SqlSessionFactoryBean有下面这些字段，和Configuration都差不多，buil
 ![](/styles/images/java/mybatis/SqlSessionFactoryBean.png)
 
 ### 2. SqlSessionTemplate -- 管理sqlSession
-SqlSessionTemplate 是MyBatis-Spring 的核心，代替MyBatis 中的DefaultSqlSession 的功能，所以可以通过
-SqlSessionTemplate 对象完成指定的数据库操作。SqlSessionTemplate 是**线程安全**(why?)的，可以在DAO(Data Access Object，数据访问对象)之间共享使用
+SqlSessionTemplate 是MyBatis-Spring 的核心，代替MyBatis 中的DefaultSqlSession 的功能，所以可以通过SqlSessionTemplate 对象完成指定的数据库操作。
+
 ```java
 public SqlSessionTemplate(SqlSessionFactory sqlSessionFactory, ExecutorType executorType,
       PersistenceExceptionTranslator exceptionTranslator) {
@@ -102,7 +102,11 @@ public static SqlSession getSqlSession(SqlSessionFactory sessionFactory, Executo
 }
 ```
 
-## 3. SqlSessionDaoSupport、MapperFactoryBean -- 管理mapper
+SqlSessionTemplate 是**线程安全**(因为没涉及到共享变量，SqlSession实际是在ThreadLocal里)的，可以在DAO(Data Access Object，数据访问对象)之间共享使用
+即所有的Dao执行方法都会走SqlSessionTemplate，然后走SqlSessionUtils.getSqlSession()拿到DefaultSqlSession，如果有事务的话会共用同一个DefaultSqlSession，
+否则每次都会创建、关闭，所以一级缓存在没有事务的时候是不生效的
+
+### 3. SqlSessionDaoSupport、MapperFactoryBean -- 管理mapper
 通过sqlSession 字段维护了一个SqlSessionTemplate，现在dao层就可以下面这么写，注入到springIoc容器中
 ```java
 @Repository
@@ -144,7 +148,7 @@ spring要调用FactoryBean.getObject()，就必须写xml配置才会调，才能
 </bean>
 ```
 
-## 4. MapperScannerConfigurer -- 自动扫描mapper
+### 4. MapperScannerConfigurer -- 自动扫描mapper
 自动扫描包下的mapper
 MapperScannerConfigurer 实现了BeanDefinitionRegistryPostProcessor 接口，该接口中的
 postProcessBeanDefinitionRegistry()方法会在系统初始化的过程中被调用
@@ -204,4 +208,80 @@ public class SpringManagedTransaction implements Transaction {
         this.isConnectionTransactional = DataSourceUtils.isConnectionTransactional(this.connection, this.dataSource);
     }
 }
+
+//DataSourceUtils.getConnection
+ public static Connection doGetConnection(DataSource dataSource) throws SQLException {
+        //从spring事务上下文中获取数据库连接，如果获取成功则返回该连接
+        ConnectionHolder conHolder = (ConnectionHolder) TransactionSynchronizationManager.getResource(dataSource);
+        if (conHolder != null && (conHolder.hasConnection() || conHolder.isSynchronizedWithTransaction())) {
+            conHolder.requested();
+            if (!conHolder.hasConnection()) {
+                logger.debug("Fetching resumed JDBC Connection from DataSource");
+                conHolder.setConnection(dataSource.getConnection());
+            }
+            return conHolder.getConnection();
+        }
+        // 否则从数据源获取数据库连接
+        Connection con = dataSource.getConnection();
+
+        if (TransactionSynchronizationManager.isSynchronizationActive()) {
+            logger.debug("Registering transaction synchronization for JDBC Connection");
+            // Use same Connection for further JDBC actions within the transaction.
+            // Thread-bound object will get removed by synchronization at transaction completion.
+            ConnectionHolder holderToUse = conHolder;
+            if (holderToUse == null) {
+                holderToUse = new ConnectionHolder(con);
+            }
+            else {
+                holderToUse.setConnection(con);
+            }
+            holderToUse.requested();
+            //注册到事务管理器中
+            TransactionSynchronizationManager.registerSynchronization(
+                    new ConnectionSynchronization(holderToUse, dataSource));
+            holderToUse.setSynchronizedWithTransaction(true);
+            if (holderToUse != conHolder) {
+                TransactionSynchronizationManager.bindResource(dataSource, holderToUse);
+            }
+        }
+
+        return con;
+    }
 ```
+
+[Spring 事务原理](https://www.jianshu.com/p/42ce0f9250f5)
+
+## spring-mybatis调用栈
+该例子时使用了事务、分页插件调用栈
+![](/styles/images/java/mybatis/SpringTrans.png)
+![](/styles/images/java/mybatis/SpringMybatisStack.png)
+相比于
+![](/styles/images/java/mybatis/MybatisStack.png)
+多了 事务、SqlSessionTemplate、分页插件、以及最后在StatementHandler自定义同步拦截插件 四个代理
+
+## spring-mybatis SqlSessiom生命周期
+一次有事务的会话
+
+    先由单例SqlSessionTemplate代理，从ThreadLocal里看是否有SqlSession，没有创建一个DefaultSqlSession
+
+![](/styles/images/java/mybatis/OpenSession.png)
+
+
+    由org.mybatis.spring.transaction.SpringManagedTransactionFactory创建出：
+    org.apache.ibatis.transaction.Transaction -> org.mybatis.spring.transaction.SpringManagedTransaction
+    再用事务创建出Simple和Cache组合的Executor，都会创建CacheExecutor这个代理，缓存是否有效是通过某个namespace是否需要缓存判断的
+    org.apache.ibatis.executor.Executor
+    
+    Executor：在执行的时候会调用SpringManagedTransaction.getConnection，从ThreadLocal获取
+    private Statement prepareStatement(StatementHandler handler, Log statementLog) throws SQLException {
+        Statement stmt;
+        Connection connection = this.transaction.getConnection();
+        stmt = handler.prepare(connection, transaction.getTimeout());
+        handler.parameterize(stmt);
+        return stmt;
+    }
+    
+没事务的会话
+
+每次都会走OpenSession()，也会创建SpringManagedTransaction，但是是一次性的
+
