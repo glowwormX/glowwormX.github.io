@@ -20,10 +20,10 @@ public class Jdk8 {
     }
 
     private static void test1() {
-        Integer[][][] ll = {{{1,2},{2,3},{2,5}}};
+        Integer[][][] ll = {{{1, 2}, {2, 3}, {2, 5}}, {{1, 2}, {2, 3}, {2, 5}}};
 
         Map<Integer, Long> collect = Arrays.stream(ll)
-                .flatMap(x1 -> Arrays.stream(x1).flatMap(x2 -> Arrays.stream(x2)))
+                .flatMap(x1 -> Arrays.stream(x1).flatMap(Arrays::stream))
                 .filter(x -> x % 2 == 0)
                 .collect(Collectors.groupingBy(Integer::intValue, Collectors.counting()));
         System.out.println(collect);
