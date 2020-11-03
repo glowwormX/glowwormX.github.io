@@ -7,7 +7,6 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.util.concurrent.EventExecutorGroup;
 
 import java.util.Date;
 
@@ -30,7 +29,7 @@ public class TimeServer {
             sbs.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG, 1024)
-                    .childHandler(new ChildChannnelHandler());
+                    .childHandler(new ChildChannelHandler());
             //绑定端口，同步等待成功
             ChannelFuture cf = sbs.bind(port).sync();
 
@@ -45,12 +44,12 @@ public class TimeServer {
         }
     }
 
-    private class ChildChannnelHandler extends ChannelInitializer<SocketChannel> {
+    private static class ChildChannelHandler extends ChannelInitializer<SocketChannel> {
         protected void initChannel(SocketChannel socketChannel) throws Exception {
             socketChannel.pipeline().addLast(new TimeServerHandler());
         }
 
-        private class TimeServerHandler extends ChannelHandlerAdapter {
+        private static class TimeServerHandler extends ChannelHandlerAdapter {
             @Override
             public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                 ByteBuf buf = (ByteBuf) msg;

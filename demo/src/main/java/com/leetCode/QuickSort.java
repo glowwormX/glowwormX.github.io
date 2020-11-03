@@ -9,6 +9,27 @@ import java.io.UnsupportedEncodingException;
  * @date 2019/5/30 21:48
  */
 public class QuickSort {
+    // 3 0 7 1 2 5
+    // 2 0 7 1 7 5
+    void quickSort1(int[] arr, int l, int r) {
+        int compare = arr[l];
+        int i = l, j = r;
+        while (i < j) {
+            while (i < j && arr[i] < compare) {
+                i++;
+            }
+            while (i > j && arr[j] > compare) {
+                j--;
+            }
+            int temp = arr[i];
+            arr[l] = arr[j];
+            arr[i] = compare;
+            arr[j] = temp;
+        }
+        quickSort1(arr, l, i - 1);
+        quickSort1(arr, i + 1, r);
+    }
+
     public static void main(String[] args) throws UnsupportedEncodingException {
 
         int[] arr = {4,6,2,77,23,9,3,7,31,15,13,17};
@@ -24,7 +45,7 @@ public class QuickSort {
 //        arr = new int[]{3,2,1,5,6,4};
         int i = KMax(arr, 0, arr.length - 1, 2);
         System.out.println(i);
-
+Re
     }
 
 //    private int sort(int[] arr) {
