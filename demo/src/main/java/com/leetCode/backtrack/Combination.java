@@ -3,19 +3,16 @@ package com.leetCode.backtrack;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 给定两个整数n和k，返回1 ... n中k个数字的所有可能组合。
+ * Combination
+ */
 public class Combination {
     public static void main(String[] args) {
         System.out.println(new Combination().combine(4, 2));
         /*
         输出
-        [
-          [2,4]，
-          [3,4]，
-          [2,3]，
-          [1,2]，
-          [1,3]，
-          [1,4]，
-        ]
+        [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
         */
     }
 

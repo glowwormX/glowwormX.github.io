@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class SubSet {
     public static void main(String[] args) {
-        List<List<Integer>> res = new SubSet().subsets(new int[]{2,4,3,1});
+        List<List<Integer>> res = new SubSet().subsets(new int[]{1, 2, 3, 4});
         System.out.println(res);
     }
 

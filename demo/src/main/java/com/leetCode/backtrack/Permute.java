@@ -6,6 +6,8 @@ import java.util.List;
 /**
  * 求不重复数组 所有排列组合
  * 46. Permutations
+ * 输入： nums = [1,2,3]
+ * 输出： [[1,2,3]，[1,3,2]，[2,1,3]，[2,3,1]，[3,1 ，2]，[3,2,1]]
  */
 public class Permute {
     public static void main(String[] args) {

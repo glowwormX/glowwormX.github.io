@@ -45,7 +45,6 @@ public class QuickSort {
 //        arr = new int[]{3,2,1,5,6,4};
         int i = KMax(arr, 0, arr.length - 1, 2);
         System.out.println(i);
-Re
     }
 
 //    private int sort(int[] arr) {
