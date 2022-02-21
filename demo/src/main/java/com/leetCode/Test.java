@@ -1,16 +1,38 @@
 package com.leetCode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Test {
     public static void main(String[] args) {
-        int[][] a = {{0, 0, 1, 0, 0, 0, 0}, {0, 1, 0, 0, 0, 0, 1}, {0, 0, 1, 0, 1, 0, 0}, {0, 0, 0, 1, 1, 1, 0}, {1, 0, 0, 1, 1, 0, 0}, {1, 1, 1, 1, 1, 0, 1}, {0, 0, 1, 0, 0, 0, 0}};
-        new Solution7().shortestPathBinaryMatrix(a);
+        streamSortTest();
+//        int[][] a = {{0, 0, 1, 0, 0, 0, 0}, {0, 1, 0, 0, 0, 0, 1}, {0, 0, 1, 0, 1, 0, 0}, {0, 0, 0, 1, 1, 1, 0}, {1, 0, 0, 1, 1, 0, 0}, {1, 1, 1, 1, 1, 0, 1}, {0, 0, 1, 0, 0, 0, 0}};
+//        new Solution7().shortestPathBinaryMatrix(a);
 //        System.out.println(new Solution6().numSubarrayProductLessThanK(new int[]{10,5,2,6}, 100));
 //        new Solution3().validPalindrome("abc");
 //        new Solution1().combinationSum(new int[]{2,3,6,7}, 7);
 //        System.out.println(new Solution().minInsertions("(()))"));
+    }
+
+    public static void streamSortTest() {
+        // 排序大小
+        final int sortSize = 1000000;
+
+        // 通过stream和一个Integer数组创建一个list
+        List<Integer> list = new ArrayList<>();
+        Random r = new Random();
+        for (int i = 0; i < sortSize; i++) {
+            list.add(r.nextInt());
+        }
+        System.out.println("Arrays created!");
+
+        long startTime = System.currentTimeMillis();
+        int[] res = list.stream().parallel().mapToInt(Integer::intValue).sorted().toArray();
+        long endTime = System.currentTimeMillis();
+        System.out.println("ParallelStream time is: " + (endTime - startTime) + " milliseconds");
     }
 
     static class Solution7 {

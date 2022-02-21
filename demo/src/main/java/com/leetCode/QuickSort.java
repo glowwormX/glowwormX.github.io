@@ -1,6 +1,7 @@
 package com.leetCode;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 
 /**
  * @author 徐其伟
@@ -11,23 +12,34 @@ import java.io.UnsupportedEncodingException;
 public class QuickSort {
     // 3 0 7 1 2 5
     // 2 0 7 1 7 5
-    void quickSort1(int[] arr, int l, int r) {
+//    先找右边比基准值小的，再找左边比基准值大的，交换位置，直到两个指针相等
+//    交换基准值和中间值
+//    递归中间值的左边和右边
+    static void quickSortSimple(int[] arr, int l, int r) {
+        if (l >= r) return;
+        //基准值
         int compare = arr[l];
         int i = l, j = r;
+        //先找右边比基准值小的，再找左边比基准值大的，交换位置，直到两个指针相等
         while (i < j) {
-            while (i < j && arr[i] < compare) {
-                i++;
-            }
-            while (i > j && arr[j] > compare) {
+            while (i < j && arr[j] >= compare) {
                 j--;
             }
-            int temp = arr[i];
-            arr[l] = arr[j];
-            arr[i] = compare;
-            arr[j] = temp;
+            while (i < j && arr[i] <= compare) {
+                i++;
+            }
+            int temp = arr[j];
+            arr[j] = arr[i];
+            arr[i] = temp;
+            System.out.println(String.format("swap %s %s, arr: %s", arr[j], arr[i], Arrays.toString(arr)));
         }
-        quickSort1(arr, l, i - 1);
-        quickSort1(arr, i + 1, r);
+        //交换基准值和中间值
+        arr[l] = arr[i];
+        arr[i] = compare;
+        System.out.println("before recursive: " + Arrays.toString(arr));
+        //    递归中间值的左边和右边
+        quickSortSimple(arr, l, i - 1);
+        quickSortSimple(arr, i + 1, r);
     }
 
     public static void main(String[] args) throws UnsupportedEncodingException {
@@ -41,7 +53,7 @@ public class QuickSort {
 //        arr = {3,2,2,77,23,9,6,7,31,15,13,17};
 //                 i j                               4
 //        arr = {3,2,4,77,23,9,6,7,31,15,13,17};
-        quickSort(arr, 0, arr.length - 1);
+        quickSortSimple(arr, 0, arr.length - 1);
 //        arr = new int[]{3,2,1,5,6,4};
         int i = KMax(arr, 0, arr.length - 1, 2);
         System.out.println(i);
