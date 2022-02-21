@@ -43,8 +43,8 @@ public class QuickSort {
     }
 
     public static void main(String[] args) throws UnsupportedEncodingException {
-
         int[] arr = {4,6,2,77,23,9,3,7,31,15,13,17};
+        //[2, 3, 4, 6, 7, 9, 13, 15, 17, 23, 31, 77]
 //               i             j                     4
 //        arr = {3,6,2,77,23,9,3,7,31,15,13,17};
 //                 i           j                     4

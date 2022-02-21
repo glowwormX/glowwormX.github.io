@@ -10,6 +10,11 @@ import java.util.List;
  */
 public class SubSetII {
     public static void main(String[] args) {
+        /*
+        5 5 5
+        5 5 5
+        5 5 5
+        */
         List<List<Integer>> res = new SubSetII().subsets(new int[]{5, 5, 5, 5, 5});
         System.out.println(res);
     }
