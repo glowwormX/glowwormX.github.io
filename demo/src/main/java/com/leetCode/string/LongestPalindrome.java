@@ -8,77 +8,54 @@ package com.leetCode.string;
  */
 public class LongestPalindrome {
     public static void main(String[] args) {
-        String babad = new LongestPalindrome().longestPalindrome1("babad");
+        String babad = new Solution().longestPalindrome("babad");
         System.out.println(babad);
     }
 
-    public String longestPalindrome(String s) {
-        int max = -1;
-        String res = "";
-        for (int i = 0; i < s.length(); i++) {
-            for (int j = s.length() - 1; j >= i && max < (j - i); j--) {
-                if (isResult(s, i, j)) {
-                    if (max < j - i) {
-                        max = j - i;
-                        res = s.substring(i, j + 1);
-                    }
-                    break;
+    static class Solution {
+        public String longestPalindrome(String s) {
+            if (s == null || s.length() < 1) {
+                return "";
+            }
+
+            // 初始化最大回文子串的起点和终点
+            int start = 0;
+            int end = 0;
+
+            // 遍历每个位置，当做中心位
+            for (int i = 0; i < s.length(); i++) {
+                // 分别拿到奇数偶数的回文子串长度
+                int len_odd = expandCenter(s, i, i);
+                int len_even = expandCenter(s, i, i + 1);
+                // 对比最大的长度
+                int len = Math.max(len_odd, len_even);
+                // 计算对应最大回文子串的起点和终点
+                if (len > end - start) {
+                    start = i - (len - 1) / 2;
+                    end = i + len / 2;
                 }
             }
+            // 注意：这里的end+1是因为 java自带的左闭右开的原因
+            return s.substring(start, end + 1);
         }
-        return res;
-    }
 
-    public String longestPalindrome1(String s) {
-        int max = -1, i = 0;
-        String res = "";
-        while (i < s.length()) {
-            int length = 1;
-            int l = i, r = i;
-            //找重复字串
-            while (l - 1 > 0 && s.charAt(i) == s.charAt(l - 1)) {
-                l--;
+
+        /**
+         * @param s     输入的字符串
+         * @param left  起始的左边界
+         * @param right 起始的右边界
+         * @return 回文串的长度
+         */
+        private int expandCenter(String s, int left, int right) {
+            // left = right 的时候，此时回文中心是一个字符，回文串的长度是奇数
+            // right = left + 1 的时候，此时回文中心是一个空隙，回文串的长度是偶数
+            // 跳出循环的时候恰好满足 s.charAt(left) ！= s.charAt(right)
+            while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+                left--;
+                right++;
             }
-            while (r + 1 < s.length() && s.charAt(i) == s.charAt(r + 1)) {
-                r++;
-            }
-            //两边相等长度加1
-            while (r + length <= (s.length() - 1) && l - length >= 0 && s.charAt(r + length) == s.charAt(l - length)) {
-                length++;
-            }
-            String temp = s.substring(l - length + 1, r + length - 1 + 1);
-
-            if (max < temp.length()) {
-                max = temp.length();
-                res = temp;
-            }
-            i = r + 1;
+            // 回文串的长度是right-left+1-2 = right - left - 1
+            return right - left - 1;
         }
-        return res;
-    }
-
-
-    private boolean isResult(String s, int l, int r) {
-        while (l < r && s.charAt(l) == s.charAt(r)) {
-            l++;
-            r--;
-        }
-        return l == r || (l - r) == 1;
-    }
-
-    private String getMax(String s, int i) {
-        int length = 1;
-        int l = i, r = i;
-        while (r + 1 < s.length() && s.charAt(i) == s.charAt(r + 1)) {
-            r++;
-        }
-        while (l - 1 > 0 && s.charAt(i) == s.charAt(l - 1)) {
-            l--;
-        }
-
-        while (r + length <= (s.length() - 1) && l - length >= 0 && s.charAt(r + length) == s.charAt(l - length)) {
-            length++;
-        }
-        return s.substring(l - length + 1, r + length - 1 + 1);
     }
 }

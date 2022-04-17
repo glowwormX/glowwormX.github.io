@@ -1,11 +1,13 @@
 package com.leetCode;
 
+import java.util.Arrays;
+
 /**
  * @Description:<p>堆排序算法的实现，以大顶堆为例。</p>
  */
 public class HeapSort {
     public static void main(String[] args) {
-        int[] ints = {49, 38, 65, 97, 76, 13, 27, 49};
+        int[] ints = {1, 2, 3, 4, 5, 6, 7, 8};
         heapSort(ints);
     }
 
@@ -40,15 +42,18 @@ public class HeapSort {
     public static void heapSort(int[] arr) {
         if (arr == null || arr.length == 0)
             return;
+        System.out.println(Arrays.toString(arr));
 
         //建立大顶堆
         for (int i = arr.length / 2; i >= 0; i--) {
             heapAdjust(arr, i, arr.length - 1);
+            System.out.println(Arrays.toString(arr));
         }
-
+        System.out.println("1");
         for (int i = arr.length - 1; i >= 0; i--) {
             swap(arr, 0, i);
             heapAdjust(arr, 0, i - 1);
+            System.out.println(Arrays.toString(arr));
         }
 
     }

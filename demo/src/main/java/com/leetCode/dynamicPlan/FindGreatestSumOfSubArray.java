@@ -25,6 +25,7 @@ public class FindGreatestSumOfSubArray {
         return res;
     }
 
+
     public static void main(String[] args) {
         int res = findGreatestSumOfSubArray(new int[]{-3, 6, -2, 7, -15, 1, 2, 2});
         System.out.println(res);
