@@ -1,6 +1,7 @@
 package com.leetCode.linked;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class LRUCache {
     HashMap<Integer, Entry> map;
