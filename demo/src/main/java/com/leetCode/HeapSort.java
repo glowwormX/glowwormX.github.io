@@ -22,7 +22,7 @@ public class HeapSort {
     public static void heapAdjust(int[] arr, int start, int end) {
         int temp = arr[start];
 
-        for (int i = 2 * start + 1; i <= end; i *= 2) {
+        for (int i = 2 * start + 1; i <= end; i = 2 * i + 1) {
             //左右孩子的节点分别为2*i+1,2*i+2
 
             //选择出左右孩子较大的下标

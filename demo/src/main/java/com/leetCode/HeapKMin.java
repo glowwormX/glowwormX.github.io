@@ -55,7 +55,7 @@ public class HeapKMin {
 
         public void heapAdjust(int[] array, int start, int end) {
             int tmp = array[start];
-            for (int i = start * 2 + 1; i <= end; i *= 2) {
+            for (int i = 2 * start + 1; i <= end; i = 2 * i + 1) {
                 //小顶堆
                 if (i < end && array[i] > array[i + 1]) {
                     i++;
@@ -95,7 +95,7 @@ public class HeapKMin {
 
         public void heapAdjust(int[] array, int start, int end) {
             int tmp = array[start];
-            for (int i = start * 2 + 1; i <= end; i *= 2) {
+            for (int i = 2 * start + 1; i <= end; i = 2 * i + 1) {
                 //大顶堆
                 if (i < end && array[i] < array[i + 1]) {
                     i++;
@@ -136,7 +136,7 @@ public class HeapKMin {
 
         public void heapAdjust(int[] array, int start, int end) {
             int tmp = array[start];
-            for (int i = start * 2 + 1; i <= end; i *= 2) {
+            for (int i = 2 * start + 1; i <= end; i = 2 * i + 1) {
                 //大顶堆
                 if (i < end && array[i] < array[i + 1]) {
                     i++;
@@ -157,5 +157,28 @@ public class HeapKMin {
             }
             return queue.peek();
         }
+    }
+
+    /**
+     * 大顶堆调整
+     */
+    public void headAdjust(int[] arr, int parent) {
+        for (int left = parent * 2 + 1; left < arr.length; ) {
+            int max = left;
+            int right = left + 1;
+            if (right < arr.length && arr[left] < arr[right]) {
+                max = right;
+            }
+            if (arr[parent] >= arr[max]) {
+                break;
+            }
+            swap(arr, parent, max);
+            parent = max;
+            left = parent * 2 + 1;
+        }
+    }
+
+    private void swap(int[] arr, int parent, int max) {
+
     }
 }
