@@ -3,50 +3,43 @@ package com.thread;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.LockSupport;
 import java.util.stream.Collectors;
 
 /**
- * @Description:
  * @author xqw
+ * @Description:
  * @date 2022/2/21 20:45
  */
 public class Test {
-    public static void main(String[] args) {
+//    static volatile AtomicInteger i = new AtomicInteger(0);
+    static volatile int i = 0;
 
-        List<String> allPaymentList = new ArrayList<>();
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(16, 32, 60, TimeUnit.SECONDS,
-                new LinkedBlockingQueue<>(0),
-                Executors.defaultThreadFactory(),
-                new ThreadPoolExecutor.CallerRunsPolicy());
-       /* List<FutureTask<Boolean>> fts = new ArrayList<>();
-        for (String p : allPaymentList) {
-            Future<String> t = executor.submit(() -> {
-                if(isEnable(p)) {
-                    return p;
-                }
-                return null;
-            });
-            fts.add(t);
-        }*/
-        List<String> collect = allPaymentList.stream()
-                .map(p -> executor.submit(() -> isEnable(p) ? p : null))
-                .map(t -> {
+    public static void main(String[] args) throws InterruptedException {
+        Object lock = new Object();
+        Runnable runnable = () -> {
+            synchronized (lock) {
+                while (true) {
                     try {
-                        return t.get();
-                    } catch (Exception e) {
-
+                        lock.wait();
+                        if (i >= 1000) return;
+                        System.out.println(Thread.currentThread().getName() + " print: " + i);
+                        i++;
+                        lock.notify();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                    return null;
-                })
-                .filter(p -> p != null)
-                .collect(Collectors.toList());
-
-
-
+                }
+            }
+        };
+        new Thread(runnable).start();
+        new Thread(runnable).start();
+        new Thread(runnable).start();
+        Thread.sleep(1000L);
+        synchronized (lock) {
+            lock.notify();
+        }
+        LockSupport.park();
     }
-
-    private static Boolean isEnable(String p) {
-        return true;
-    }
-
 }

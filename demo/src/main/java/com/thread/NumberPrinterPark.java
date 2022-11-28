@@ -22,7 +22,7 @@ public class NumberPrinterPark {
         @Override
         public void run() {
             for (int i = 0, p = printIndex; p <= total; i++, p = i * n + printIndex) {
-                LockSupport.park(next);
+                LockSupport.park();
                 System.out.println(p);
                 LockSupport.unpark(next);
             }
@@ -30,7 +30,7 @@ public class NumberPrinterPark {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        main1(args);
+//        main1(args);
 
         Printer t1 = new Printer(1, 3, 100);
         Printer t2 = new Printer(2, 3, 100);
