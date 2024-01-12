@@ -1,6 +1,9 @@
 package com.leetCode.tree;
 
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 /**
  * @author 徐其伟
  * @Description: 根据先序 中序构建树
@@ -9,11 +12,29 @@ package com.leetCode.tree;
  */
 public class PreInOrderBuildTree {
     public static void main(String[] args) {
-        int[] preorder = {3,9,20,15,7};
-        int[] inorder = {9,3,15,20,7};
+        int[] preorder = {1, 2, 4, 5, 3, 6, 7};
+        int[] inorder = {4, 2, 5, 1, 6, 3, 7};
 //        int[] preorder = {1,2,3};
 //        int[] inorder = {2,3,1};
         TreeNode treeNode = new PreInOrderBuildTree().buildTree(preorder, inorder);
+
+        treeNode.printAll();
+
+        System.out.print("preOrderByDeque: ");
+        printPreOrderByDeque(treeNode);
+        System.out.println("");
+
+        System.out.print("inOrder: ");
+        printInOrder(treeNode);
+        System.out.println("");
+
+        System.out.print("inOrderByDeque: ");
+        printInOrderByDeque(treeNode);
+        System.out.println("");
+
+        System.out.print("bfs: ");
+        printBfsByDeque(treeNode);
+        System.out.println("");
     }
 
 //     Definition for a binary tree node.
@@ -23,24 +44,85 @@ public class PreInOrderBuildTree {
         return buildTree(preorder, inorder, 0, 0, inorder.length - 1);
     }
 
-    private TreeNode buildTree(int[] preorder, int[] inorder, int preorderLeft, int inorderLeft, int inorderRight ) {
+    /**
+     * {1, 2, 4, 5, 3, 6, 7};
+     * {4, 2, 5, 1, 6, 3, 7};
+     * 构建后：
+     *    1
+     *   2 3
+     * 4 5 6 7
+     * 先拿”1“去找中序中的位置inorderMid，
+     * 将中序分成左右两段，inorderMid左边的都是”1“的左节点，右边的都是右节点的数据
+     * 将先序分成前后两段，中序inorderMid左边有三个数，所以2是左节点，3是右节点, (preorderLeft + 1), (preorderLeft + 1 + inorderMid - inorderLeft)
+     */
+    private TreeNode buildTree(int[] preorder, int[] inorder, int preorderLeft, int inorderLeft, int inorderRight) {
         TreeNode first = new TreeNode(preorder[preorderLeft]);
         int inorderMid = indexOf(inorder, preorder[preorderLeft]);
 //        if (!(inorderMid > inorderLeft && inorderMid < inorderRight)) throw new IllegalArgumentException("can't build");
         if (inorderMid > inorderLeft) {
-            first.left = buildTree(preorder, inorder, preorderLeft + 1,  inorderLeft, inorderMid - 1);
+            first.left = buildTree(preorder, inorder, preorderLeft + 1, inorderLeft, inorderMid - 1);
         }
         if (inorderMid < inorderRight) {
-            first.right = buildTree(preorder, inorder, preorderLeft + inorderMid - inorderLeft + 1,  inorderMid + 1, inorderRight);
+            first.right = buildTree(preorder, inorder, preorderLeft + inorderMid - inorderLeft + 1, inorderMid + 1, inorderRight);
         }
         return first;
     }
 
-    private int indexOf(int [] array, int val) {
+    private int indexOf(int[] array, int val) {
         for (int i = 0; i < array.length; i++) {
             if (array[i] == val) return i;
         }
         return -1;
+    }
+
+    private static void printPreOrderByDeque(TreeNode parent) {
+        Deque<TreeNode> deque = new LinkedList<>();
+        deque.addLast(parent);
+        while (deque.size() > 0) {
+            TreeNode node = deque.pollLast();
+            if (node == null) continue;
+            System.out.print(node.val + " ");
+            deque.addLast(node.left);
+            deque.addLast(node.right);
+        }
+    }
+
+    private static void printInOrderByDeque(TreeNode parent) {
+        Deque<TreeNode> deque = new LinkedList<>();
+        TreeNode cur = parent;
+        while (!deque.isEmpty() || cur != null) {
+            while (cur != null) {
+                deque.addLast(cur);
+                cur = cur.left;
+            }
+            TreeNode node = deque.pollLast();
+            System.out.print(node.val + " ");
+            if (node.right != null) {
+                cur = node.right;
+            }
+        }
+    }
+
+    private static void printInOrder(TreeNode parent) {
+        if (parent == null) return;
+        printInOrder(parent.left);
+        System.out.print(parent.val + " ");
+        printInOrder(parent.right);
+    }
+
+    /**
+     * 层次遍历
+     */
+    private static void printBfsByDeque(TreeNode parent) {
+        Deque<TreeNode> deque = new LinkedList<>();
+        deque.addLast(parent);
+        while (deque.size() > 0) {
+            TreeNode node = deque.pollFirst();
+            if (node == null) continue;
+            System.out.print(node.val + " ");
+            deque.addLast(node.left);
+            deque.addLast(node.right);
+        }
     }
 
 //    public TreeNode buildTree(int[] preorder, int[] inorder) {

@@ -17,6 +17,8 @@ public class SubSetII {
         */
         List<List<Integer>> res = new SubSetII().subsets(new int[]{5, 5, 5, 5, 5});
         System.out.println(res);
+        List<List<Integer>> res2 = new SubSetII().subsets(new int[]{1, 5, 5, 5, 6});
+        System.out.println(res2);
     }
 
     public List<List<Integer>> subsets(int[] nums) {

@@ -42,14 +42,14 @@ public class HeapSort {
     public static void heapSort(int[] arr) {
         if (arr == null || arr.length == 0)
             return;
-        System.out.println(Arrays.toString(arr));
+        System.out.println("input:" + Arrays.toString(arr));
 
         //建立大顶堆
         for (int i = arr.length / 2; i >= 0; i--) {
             heapAdjust(arr, i, arr.length - 1);
-            System.out.println(Arrays.toString(arr));
+            System.out.println("i:" + i + ",arr:" + Arrays.toString(arr));
         }
-        System.out.println("1");
+        System.out.println("build end");
         for (int i = arr.length - 1; i >= 0; i--) {
             swap(arr, 0, i);
             heapAdjust(arr, 0, i - 1);

@@ -12,6 +12,7 @@ public class RecoverTree {
         int[] preorder = {3, 4, 1, 2, 5};
         int[] inorder = {1, 4, 3, 2, 5};
         TreeNode treeNode = new PreInOrderBuildTree().buildTree(preorder, inorder);
+        treeNode.printAll();
 
         new RecoverTree().recoverTree(treeNode);
 
