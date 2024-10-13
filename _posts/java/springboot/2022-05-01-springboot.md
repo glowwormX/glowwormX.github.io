@@ -16,9 +16,9 @@ tag: spring
   
 * 自动装配流程原理：
   @SpringbootApplication   
-  @EnableAutoConfiguration、@ComponentScan   
-  @Import  DeferredImportSelector   
-  META-INF/spring.factories   
+  SpringbootApplication:@EnableAutoConfiguration、@ComponentScan   
+  EnableAutoConfiguration: @Import  DeferredImportSelector   
+  DeferredImportSelector:加载 META-INF/spring.factories   
   加载并通过ConditionOnXXX过滤所有AutoConfiguration   
   
 * 为什么springBoot能直接java -jar 执行
